@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>7.0</ProjectVersion>
+    <ToolchainName>com.Atmel.AVRAssembler</ToolchainName>
+    <ProjectGuid>fac61e46-0819-41fd-a898-b110576d2c51</ProjectGuid>
+    <avrdeviceseries>none</avrdeviceseries>
+    <avrdevice>ATmega32A</avrdevice>
+    <OutputFileName>rc_calib</OutputFileName>
+    <OutputFileExtension>.obj</OutputFileExtension>
+    <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
+    <Language>ASSEMBLY</Language>
+    <AvrProjectType>Importer</AvrProjectType>
+    <ToolchainFlavour>Native</ToolchainFlavour>
+    <avrtool>com.atmel.avrdbg.tool.avrdragon</avrtool>
+    <KeepTimersRunning>true</KeepTimersRunning>
+    <OverrideVtor>false</OverrideVtor>
+    <CacheFlash>true</CacheFlash>
+    <ProgFlashFromRam>true</ProgFlashFromRam>
+    <RamSnippetAddress>0x20000000</RamSnippetAddress>
+    <UncachedRange />
+    <preserveEEPROM>true</preserveEEPROM>
+    <OverrideVtorValue>exception_table</OverrideVtorValue>
+    <BootSegment>2</BootSegment>
+    <eraseonlaunchrule>0</eraseonlaunchrule>
+    <AsfFrameworkConfig>
+      <framework-data xmlns="">
+  <options />
+  <configurations />
+  <files />
+  <documentation help="" />
+  <offline-documentation help="" />
+  <dependencies>
+    <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.28.1" />
+  </dependencies>
+</framework-data>
+    </AsfFrameworkConfig>
+    <EntryFile>$(MSBuildProjectDirectory)\RC_Calibration.asm</EntryFile>
+    <avrtoolserialnumber>00A200055995</avrtoolserialnumber>
+    <avrdeviceexpectedsignature>0x1E9502</avrdeviceexpectedsignature>
+    <com_atmel_avrdbg_tool_avrdragon>
+      <ToolOptions>
+        <InterfaceProperties>
+          <JtagDbgClock>200000</JtagDbgClock>
+        </InterfaceProperties>
+        <InterfaceName>JTAG</InterfaceName>
+      </ToolOptions>
+      <ToolType>com.atmel.avrdbg.tool.avrdragon</ToolType>
+      <ToolNumber>00A200055995</ToolNumber>
+      <ToolName>AVR Dragon</ToolName>
+    </com_atmel_avrdbg_tool_avrdragon>
+    <avrtoolinterface>JTAG</avrtoolinterface>
+    <avrtoolinterfaceclock>200000</avrtoolinterfaceclock>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'default' ">
+    <OutputPath>bin\default\</OutputPath>
+    <ToolchainSettings>
+      <AvrAssembler>
+  <avrasm.assembler.general.AdditionalIncludeDirectories>
+    <ListValues>
+      <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.0.91\avrasm\inc</Value>
+      <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.0.91\avrasm\inc</Value>
+    </ListValues>
+  </avrasm.assembler.general.AdditionalIncludeDirectories>
+  <avrasm.assembler.general.IncludeFile>m32adef.inc</avrasm.assembler.general.IncludeFile>
+</AvrAssembler>
+    </ToolchainSettings>
+    <OutputType>Executable</OutputType>
+  </PropertyGroup>
+  <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Assembler.targets" />
+  <ItemGroup>
+    <Compile Include="Common\macros.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\main.asm">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\memoryMap.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Device specific\m32.asm">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interface specific\isp_AVRISP_interface.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interface specific\isp_AVRISP_mkII_interface.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interface specific\isp_STK500_interface.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interface specific\jtag_interface.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interface specific\jtag_mkII_interface.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interface specific\jtag_mkII_isp_interface.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RC_Calibration.asm">
+      <SubType>compile</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Batch file\" />
+    <Folder Include="Common\" />
+    <Folder Include="default\" />
+    <Folder Include="Device specific\" />
+    <Folder Include="Interface specific\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Batch file\0xFF_byte.hex">
+      <SubType>Code</SubType>
+    </None>
+    <None Include="Batch file\ISP_rc_calib.bat">
+      <SubType>Code</SubType>
+    </None>
+    <None Include="Batch file\ISP_USB_rc_calib.bat">
+      <SubType>Code</SubType>
+    </None>
+    <None Include="Batch file\JTAGICE_mkII_isp_rc_calib.bat">
+      <SubType>Code</SubType>
+    </None>
+    <None Include="Batch file\JTAGICE_mkII_rc_calib.bat">
+      <SubType>Code</SubType>
+    </None>
+    <None Include="Batch file\JTAGICE_rc_calib.bat">
+      <SubType>Code</SubType>
+    </None>
+    <None Include="Batch file\test.hex">
+      <SubType>Code</SubType>
+    </None>
+    <None Include="default\rc_calib.lss">
+      <SubType>Code</SubType>
+    </None>
+  </ItemGroup>
+</Project>
